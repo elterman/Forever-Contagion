@@ -1,0 +1,17 @@
+export const APP_KEY = 'WAVES V1';
+export const X = '✖';
+export const GAME_PAGE = 'GAME PAGE';
+export const PROMPT_NORM = 'NORMALIZE';
+export const PROMPT_START_OVER = 'START OVER?';
+export const PROMPT_RESET_STATS = 'RESET STATS?';
+export const PROMPT_TRANSITION = 300;
+export const PI_OVER_180 = Math.PI / 180;
+export const DLG_INSTR = 'INSTR';
+export const TICK_MS = 20;
+export const BOUNCE_VELOCITY = 0.5;
+export const TERMINAL_VELOCITY = 1;
+export const ELON_RADIUS = 33;
+export const ELON_MAX_VELOCITY = 3;
+export const UFO_RADIUS = 25;
+export const UFO_VELOCITY = 4;
+export const UFO_COUNT = 10;
