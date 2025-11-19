@@ -1,5 +1,5 @@
-import adapter from '@sveltejs/adapter-vercel';
-// import adapter from '@sveltejs/adapter-static';
+// import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-static';
 
 // static ops
 let ops = {
