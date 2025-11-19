@@ -1,4 +1,4 @@
-import { random } from 'lodash-es';
+import { isNumber, random } from 'lodash-es';
 import { APP_KEY, DEAD_MS, PET_RADIUS, PET_VELOCITY, TICK_MS, ZET_RADIUS } from './const';
 import { _sound } from './sound.svelte';
 import { _prompt, _stats, ss } from './state.svelte';
@@ -93,7 +93,7 @@ const onTick = () => {
             fob.cx += fob.vel.x;
             fob.cy += fob.vel.y;
 
-            if (fob.dead && ((ss.ticks - fob.dead) * TICK_MS) >= DEAD_MS) {
+            if (isNumber(fob.dead) && fob.dead && ((ss.ticks - fob.dead) * TICK_MS) >= DEAD_MS) {
                 _sound.play('won', { rate: 4 });
                 shake(fob);
                 delete fob.dead;
@@ -138,21 +138,22 @@ const onTick = () => {
                 continue;
             }
 
-            if (isZet(fob1) || isZet(fob2) || fob1.dead || fob2.dead) {
-                const check = (fob) => {
-                    if (isPet(fob) && !fob.dead) {
-                        _sound.play('lost', { rate: 2 });
-                        shake(fob);
-                        fob.dead = ss.ticks;
+            const check = (zob, fob) => {
+                if (isPet(fob) && !fob.dead) {
+                    _sound.play('lost', { rate: 2 });
+                    shake(fob);
+                    fob.dead = isPet(zob) ? ss.ticks : true;
 
-                        if (ss.fobs.filter(f => isPet(f)).every(f => f.dead)) {
-                            onOver('lost');
-                        }
+                    if (ss.fobs.filter(f => isPet(f)).every(f => f.dead)) {
+                        onOver('lost');
                     }
-                };
+                }
+            };
 
-                check(fob1);
-                check(fob2);
+            if (isZet(fob1) || fob1.dead) {
+                check(fob1, fob2);
+            } else if (isZet(fob2) || fob2.dead) {
+                check(fob2, fob1);
             }
 
             const { v1, v2 } = handleCollision(fob1, fob2);
