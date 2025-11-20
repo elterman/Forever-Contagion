@@ -1,11 +1,11 @@
-import { PROMPT_TRANSITION } from './const';
+import { PET_COUNT, PROMPT_TRANSITION } from './const';
 import { showDialog } from './shared.svelte';
 import { post } from './utils';
 
 export const ss = $state({
     fobs: [],
     dlg: true,
-    pet_count: 10,
+    pet_count: PET_COUNT,
 });
 
 export const _prompt = $state({

@@ -17,7 +17,7 @@ const wellScattered = () => {
 
             const dist = Math.hypot(fob1.cx - fob2.cx, fob1.cy - fob2.cy);
 
-            if (dist < zet.radius * 6) {
+            if (dist < zet.radius * 5) {
                 return false;
             }
         }
@@ -104,7 +104,7 @@ const onTick = () => {
             fob.cx += fob.vel.x;
             fob.cy += fob.vel.y;
 
-            if (isNumber(fob.dead) && fob.dead && ((ss.ticks - fob.dead) * TICK_MS) >= DEAD_MS) {
+            if (isNumber(fob.dead) && fob.lives > 0 && ((ss.ticks - fob.dead) * TICK_MS) >= DEAD_MS) {
                 _sound.play('won', { rate: 4 });
                 shake(fob);
                 delete fob.dead;
@@ -153,7 +153,9 @@ const onTick = () => {
                 if (isPet(fob) && !fob.dead) {
                     _sound.play('lost', { rate: isZet(zob) ? 2 : 3 });
                     shake(fob);
-                    fob.dead = isPet(zob) ? ss.ticks : true;
+                    // fob.dead = isPet(zob) ? ss.ticks : true;
+                    fob.dead = ss.ticks;
+                    fob.lives -= 1;
 
                     if (ss.fobs.filter(f => isPet(f)).every(f => f.dead)) {
                         onOver();
@@ -177,8 +179,6 @@ const onTick = () => {
         }
     }
 };
-
-export const lost = () => (ss.over && ss.over !== 'won') ? ss.over : false;
 
 export const showDialog = (value, plop = true) => {
     plop && _sound.play('plop');
@@ -243,7 +243,7 @@ const addPets = () => {
     const height = ss.space.height - radius * 2;
 
     for (let i = 0; i < ss.pet_count; i++) {
-        ss.fobs.push({ id: `pet-${i + 1}`, cx: random(width) + radius, cy: random(height) + radius, radius, vel: makeVelocity(PET_VELOCITY * 0.1) });
+        ss.fobs.push({ id: `pet-${i + 1}`, lives: 9, cx: random(width) + radius, cy: random(height) + radius, radius, vel: makeVelocity(PET_VELOCITY * 0.1) });
     }
 };
 
