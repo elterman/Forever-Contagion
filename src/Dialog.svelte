@@ -14,10 +14,10 @@
         <span style='font-style: italic;'>You are a ${green}self-conscious alien</span>, burdened with a dangerous ${orange}virus</span>. You drift through space, trying ${green}not to infect</span> the innocent.</span>
         ${ul}
         ${li}${blue}Use ${lightblue}arrow keys</span> to adjust your ${lightblue}velocity</span>—horizontal and vertical. Speed increases are ${lightblue}capped</span>.</span></span></li>
-        ${li}${blue}A contact with a ${gold}cute kitten</span> turns it into a ${orange}zombie</span>.</span></span></li>
+        ${li}${blue}Contact with a ${gold}cute kitten</span> turns it into a ${orange}zombie</span>.</span></span></li>
         ${li}${blue}Zombie kittens ${green}spread</span> the plague.</span></span></li>
         ${li}${blue}After a short time, zombie kittens ${gold}revive</span> and can be ${green}infected again</span>.</span></span></li>
-        ${li}${blue}Keep ${gold}all 10 kittens</span> alive ${lightblue}at the same time</span>—for as long as possible.</span></span></li>
+        ${li}${blue}Keep ${lightblue}all of them</span> alive ${lightblue}at the same time</span>—for as long as possible.</span></span></li>
         </ul>`;
 
 	const width = $derived(ss.space?.width > 580 ? '540px' : '80%');
