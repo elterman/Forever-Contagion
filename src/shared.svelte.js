@@ -167,6 +167,7 @@ const onTick = () => {
 
                     if (liveCount() === PET_COUNT) {
                         _stats.last_streak = ss.streak_ticks;
+                        persist();
                     }
 
                     fob.dead = ss.ticks;
