@@ -15,7 +15,7 @@
 			<NumberFlow value={liveCount()} />
 		</div>
 		<div></div>
-		<div class="label" style="font-size: {lsz}px;">plague-free time</div>
+		<div class="label" style="font-size: {lsz}px;">plague-free streak</div>
 		<div class="timer {ss.streak_ticks ? 'healthy' : ''}"><Timer ticks={ss.streak_ticks} /></div>
 	</div>
 {/if}

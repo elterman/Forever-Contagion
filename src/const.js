@@ -1,6 +1,5 @@
-export const APP_KEY = 'PMN V1';
+export const APP_KEY = 'CONTAGION V1';
 export const PROMPT_TRANSITION = 300;
-export const PROMPT_START_OVER = 'START OVER?';
 export const PROMPT_RESET_STATS = 'RESET STATS?';
 export const PI_OVER_180 = Math.PI / 180;
 export const TICK_MS = 20;
@@ -8,5 +7,5 @@ export const DEAD_MS = 5000;
 export const ZET_RADIUS = 35;
 export const PET_RADIUS = 35;
 export const ZET_MAX_VELOCITY = 3;
-export const PET_VELOCITY = 4;
+export const PET_VELOCITY = 3.7;
 export const PET_COUNT = 10;

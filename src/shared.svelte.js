@@ -85,8 +85,8 @@ const onTick = () => {
     if (liveCount() === PET_COUNT) {
         ss.streak_ticks += 1;
 
-        if (ss.streak_ticks > _stats.best_ticks) {
-            _stats.best_ticks = ss.streak_ticks;
+        if (ss.streak_ticks > _stats.best_streak) {
+            _stats.best_streak = ss.streak_ticks;
             persist();
         }
     }
@@ -165,6 +165,10 @@ const onTick = () => {
                         shake(zob);
                     }
 
+                    if (liveCount() === PET_COUNT) {
+                        _stats.last_streak = ss.streak_ticks;
+                    }
+
                     fob.dead = ss.ticks;
                     ss.streak_ticks = 0;
 
@@ -207,10 +211,12 @@ export const loadGame = () => {
         _sound.sfx = job.sfx;
         _sound.music = job.music;
         _stats.plays = job.plays;
-        _stats.best_ticks = job.best_ticks;
+        _stats.last_streak = job.last_streak;
+        _stats.best_streak = job.best_streak;
     } else {
         _stats.plays = 0;
-        _stats.best_ticks = 0;
+        _stats.last_streak = 0;
+        _stats.best_streak = 0;
     }
 };
 

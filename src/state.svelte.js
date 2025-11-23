@@ -42,5 +42,6 @@ export const _prompt = $state({
 
 export const _stats = $state({
     plays: 0,
-    best_ticks: 0,
+    last_streak: 0,
+    best_streak: 0,
 });
