@@ -4,20 +4,16 @@
 
 	const ul = '<ul style="margin: 25px 0 0 0;">';
 	const li = '<li style="margin: 12px 0 0 -20px; color: var(--gold);">';
-	const gold = '<span style="color:#fff">';
-	const orange = '<span style="color: var(--orange)">';
-	const green = '<span style="color: var(--green)">';
-	const blue = '<span style="color: var(--blue);">';
-	const lightblue = '<span style="color: var(--lightblue);">';
+	const hi = '<span style="text-decoration: underline;"">';
 
 	const CONTENT = `
-        <span style='font-style: italic;'>You are a ${green}self-conscious alien</span>, burdened with a dangerous ${orange}virus</span>. You drift through space, trying ${green}not to infect</span> the innocent.</span>
+        <span style='font-style: italic;'>You are a ${hi}self-conscious alien</span>, burdened with a dangerous ${hi}virus</span>. You drift through space, trying ${hi}not to infect</span> the innocent.</span>
         ${ul}
-        ${li}${blue}Use ${lightblue}arrow keys</span> to adjust your ${lightblue}velocity</span>—horizontal and vertical. Speed increases are ${lightblue}capped</span>.</span></span></li>
-        ${li}${blue}Contact with a ${gold}cute kitten</span> turns it into a ${orange}zombie</span>.</span></span></li>
-        ${li}${blue}Zombie kittens ${green}spread</span> the plague.</span></span></li>
-        ${li}${blue}After a short time, zombie kittens ${gold}revive</span> and can be ${green}infected again</span>.</span></span></li>
-        ${li}${blue}Keep ${lightblue}all of them</span> alive ${lightblue}at the same time</span>—for as long as possible.</span></span></li>
+        ${li}<span>Use ${hi}arrow keys</span> to adjust your ${hi}velocity</span>—horizontal and vertical.</span></li>
+        ${li}<span>Contact with a ${hi}cute kitten</span> turns it into a ${hi}zombie</span>.</span></li>
+        ${li}<span>Zombie kittens ${hi}spread</span> the plague.</span></li>
+        ${li}<span>After a short time, zombie kittens ${hi}revive</span> and can be ${hi}infected again</span>.</span></li>
+        ${li}<span>Keep ${hi}all of them</span> alive ${hi}at the same time</span>—for as long as possible.</span></li>
         </ul>`;
 
 	const width = $derived(ss.space?.width > 580 ? '540px' : '80%');
