@@ -181,6 +181,13 @@ const onTick = () => {
 
             const { v1, v2 } = handleCollision(fob1, fob2);
 
+            for (const fob of [fob1, fob2]) {
+                if (isZet(fob)) {
+                    v1.x = Math.round((v1.x.toFixed(1) * 2)) / 2;
+                    v1.y = Math.round((v1.y.toFixed(1) * 2)) / 2;
+                }
+            }
+
             fob1.vel = v1;
             fob2.vel = v2;
 
