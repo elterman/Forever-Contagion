@@ -151,7 +151,6 @@
 			window.removeEventListener('contextmenu', disable);
 			window.removeEventListener('dblclick', disable);
 			window.removeEventListener('keydown', onKeyDown);
-		window.addEventListener('keyup', onKeyUp);
 			window.removeEventListener('keyup', onKeyUp);
 		};
 	});
