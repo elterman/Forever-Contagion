@@ -1,9 +1,9 @@
 <script>
 	import NumberFlow, { NumberFlowGroup } from '@number-flow/svelte';
-	import { TICK_MS } from './const';
+	import { ticksToSecs } from './utils';
 
 	const { ticks } = $props();
-	const secs = $derived(((ticks || 0) * TICK_MS) / 1000);
+	const secs = $derived(ticksToSecs(ticks));
 
 	const time = $derived.by(() => {
 		const ds = (secs - Math.floor(secs)) * 10;

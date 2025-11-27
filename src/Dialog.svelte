@@ -1,6 +1,7 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import { ss } from './state.svelte';
+	import { DLG_LEVEL_UP } from './const';
 
 	const ul = '<ul style="margin: 25px 0 0 0;">';
 	const li = '<li style="margin: 12px 0 0 -20px; color: var(--gold);">';
@@ -10,7 +11,7 @@
 	const blue = '<span style="color: var(--blue);">';
 	const lightblue = '<span style="color: var(--lightblue);">';
 
-	const CONTENT = `
+	const INTRO = `
         <span style='font-style: italic;'>You are a ${green}self-conscious alien</span>, burdened with a dangerous ${orange}virus</span>. You drift through space, trying ${green}not to infect</span> the innocent.</span>
         ${ul}
         ${li}${blue}Use ${lightblue}arrow keys</span> to adjust your ${lightblue}velocity</span>—horizontal and vertical.</span></span></li>
@@ -20,6 +21,10 @@
         ${li}${blue}Keep ${lightblue}all of them</span> alive ${lightblue}at the same time</span>—for as long as possible.</span></span></li>
         </ul>`;
 
+	const LEVEL_UP = `
+		<span style='font-style: italic; font-size: 48px;'>Level up!</span>
+		`;
+
 	const width = $derived(ss.space?.width > 580 ? '540px' : '80%');
 	const style = $derived(`width: ${width}; font-size: ${Math.min(24, 30 * Math.min(ss.scale, 1))}px;`);
 </script>
@@ -27,7 +32,7 @@
 {#if ss.dlg}
 	<div class="dlg" {style} transition:fade={{ duration: 200 }}>
 		<div class="content" tabindex="-1">
-			{@html CONTENT}
+			{@html ss.dlg === DLG_LEVEL_UP ? LEVEL_UP : INTRO}
 		</div>
 	</div>
 {/if}

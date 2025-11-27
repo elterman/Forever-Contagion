@@ -1,7 +1,7 @@
 <script>
-	import { ZET_MAX_VELOCITY, ZET_VELOCITY_DELTA } from '../const';
+	import { DLG_INTRO, DLG_LEVEL_UP, ZET_MAX_VELOCITY, ZET_VELOCITY_DELTA } from '../const';
 	import GamePage from '../Game Page.svelte';
-	import { findZet, onStart, persist } from '../shared.svelte';
+	import { findZet, levelUp, onStart, persist, showDialog } from '../shared.svelte';
 	import { _sound } from '../sound.svelte';
 	import Splash from '../Splash.svelte';
 	import { _stats, ss } from '../state.svelte';
@@ -74,11 +74,13 @@
 		}
 
 		if (ss.dlg) {
-			if (e.code === (ss.fobs.length ? 'Escape' : 'Space')) {
+			if (e.code === (ss.dlg === DLG_LEVEL_UP || ss.fobs.length === 0 ? 'Space' : 'Escape')) {
 				_sound.play('plop');
-				delete ss.dlg;
+				post(() => delete ss.dlg);
 
-				if (ss.fobs.length === 0) {
+				if (ss.dlg === DLG_LEVEL_UP) {
+					levelUp();
+				} else if (ss.fobs.length === 0) {
 					onStart();
 				}
 			}
@@ -101,8 +103,7 @@
 		}
 
 		if (e.code === 'Escape') {
-			_sound.play('plop');
-			ss.dlg = true;
+			showDialog(DLG_INTRO);
 			return;
 		}
 

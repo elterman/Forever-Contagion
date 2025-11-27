@@ -1,4 +1,4 @@
-import { PI_OVER_180 } from './const';
+import { PI_OVER_180, TICK_MS } from './const';
 
 export const windowSize = () => {
     const d = document,
@@ -100,3 +100,5 @@ export const handleCollision = (fob1, fob2) => {
 export const isZet = (fob) => fob?.id === 'zet';
 
 export const isPet = (fob) => fob?.id?.startsWith('pet');
+
+export const ticksToSecs = (ticks) => 	((ticks || 0) * TICK_MS) / 1000;

@@ -11,3 +11,5 @@ export const ZET_VELOCITY_DELTA = 0.5;
 export const PET_VELOCITY = 3.7;
 export const PET_COUNT = 10;
 export const LEVEL_DELTA = 0.1;
+export const DLG_INTRO = 'DLG INTRO';
+export const DLG_LEVEL_UP = 'DLG LEVEL UP';

@@ -2,7 +2,7 @@ import { isNumber, random } from 'lodash-es';
 import { APP_KEY, DEAD_MS, LEVEL_DELTA, PET_COUNT, PET_RADIUS, PET_VELOCITY, TICK_MS, ZET_RADIUS } from './const';
 import { _sound } from './sound.svelte';
 import { _prompt, _stats, ss } from './state.svelte';
-import { clientRect, handleCollision, isZet, overlap, post } from './utils';
+import { clientRect, handleCollision, isZet, overlap, post, ticksToSecs } from './utils';
 
 export const _log = (value) => console.log($state.snapshot(value));
 
@@ -26,7 +26,7 @@ const wellScattered = () => {
     return true;
 };
 
-const levelUp = () => {
+export const levelUp = () => {
     ss.level += 1;
     _sound.play('dice');
 
@@ -36,6 +36,8 @@ const levelUp = () => {
         addZet();
         addPets();
     } while (!wellScattered());
+
+    ss.timer = setInterval(onTick, TICK_MS);
 };
 
 export const onStart = () => {
@@ -103,10 +105,11 @@ const onTick = () => {
         }
     }
 
-    // if (ticksToSeconds(ss.ticks) % 10 === 0) {
-    //     levelUp();
-    //     return;
-    // }
+    if (ss.streak_ticks && ticksToSecs(ss.streak_ticks) % 60 === 0) {
+        showDialog('DLG LEVEL UP');
+        clearInterval(ss.timer);
+        return;
+    }
 
     const zet = findZet();
     zet.cx += zet.vel.x;
@@ -273,9 +276,10 @@ const addPets = () => {
 
     const width = ss.space.width - radius * 2;
     const height = ss.space.height - radius * 2;
+    const m = ss.ticks ? 1  : 0.1;
 
     for (let i = 0; i < PET_COUNT; i++) {
-        ss.fobs.push({ id: `pet-${i + 1}`, lives: 9, cx: random(width) + radius, cy: random(height) + radius, radius, vel: makeVelocity(PET_VELOCITY * 0.1) });
+        ss.fobs.push({ id: `pet-${i + 1}`, lives: 9, cx: random(width) + radius, cy: random(height) + radius, radius, vel: makeVelocity(PET_VELOCITY * m) });
     }
 };
 
