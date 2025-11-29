@@ -39,8 +39,8 @@
 	}
 
 	@font-face {
-		font-family: DMSans;
-		src: url('$lib/fonts/DMSans.ttf');
+		font-family: Quicksand;
+		src: url('$lib/fonts/Quicksand.ttf');
 	}
 
 	@font-face {

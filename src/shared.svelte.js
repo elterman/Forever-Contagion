@@ -123,7 +123,7 @@ const onTick = () => {
 
         if (edge) {
             if (isZet(fob)) {
-                _sound.play('plop');
+                !ss.over && _sound.play('plop');
                 ss.bounced = true;
                 post(() => delete ss.bounced, 1000);
             }
@@ -254,6 +254,22 @@ export const findZet = () => ss.fobs.find((fob) => isZet(fob));
 
 export const doResize = (init) => {
     ss.space = clientRect('.space');
+
+    let scx = 1;
+    let scy = 1;
+
+    const long = Math.max(ss.space.width, ss.space.height);
+    const short = Math.min(ss.space.width, ss.space.height);
+
+    if (long < 1700) {
+        scx = long / 1700;
+    }
+
+    if (short < 940) {
+        scy = short / 940;
+    }
+
+    ss.scale = Math.min(scx, scy);
 
     if (!init) {
         return;

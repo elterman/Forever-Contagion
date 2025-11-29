@@ -9,9 +9,14 @@
 		<div class="flow">{_stats.plays}</div>
 	</div>
 	<div class="item">
+		<span class="label">scale</span>
+		<div class="flow">{ss.scale?.toFixed(2)}</div>
+	</div>
+	<div class="item">
 		<span class="label">best</span>
 		<div class="flow gold"><Timer ticks={_stats.best_ticks || ''} /></div>
 	</div>
+
 </div>
 
 <style>

@@ -5,7 +5,7 @@
 	import { _sound } from '../sound.svelte';
 	import Splash from '../Splash.svelte';
 	import { _stats, ss } from '../state.svelte';
-	import { post, windowSize } from '../utils';
+	import { post } from '../utils';
 
 	const keysPressed = new Set();
 
@@ -158,34 +158,6 @@
 			window.removeEventListener('keydown', onKeyDown);
 			window.removeEventListener('keyup', onKeyUp);
 		};
-	});
-
-	$effect(() => {
-		const onResize = () => {
-			ss.scale = 1;
-
-			let scx = 1;
-			let scy = 1;
-
-			const { w, h } = windowSize();
-			const long = Math.max(w, h);
-			const short = Math.min(w, h);
-
-			if (long < 1700) {
-				scx = long / 1700;
-			}
-
-			if (short < 940) {
-				scy = short / 940;
-			}
-
-			ss.scale = Math.min(scx, scy);
-		};
-
-		onResize();
-
-		window.addEventListener('resize', onResize);
-		return () => window.removeEventListener('resize', onResize);
 	});
 
 	let splash = $state(true);
