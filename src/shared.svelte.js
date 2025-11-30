@@ -243,11 +243,9 @@ export const loadGame = () => {
         _sound.sfx = job.sfx;
         _sound.music = job.music;
         _stats.plays = job.plays;
-        _stats.last_streak = job.last_streak;
         _stats.best_streak = job.best_streak;
     } else {
         _stats.plays = 0;
-        _stats.last_streak = 0;
         _stats.best_streak = 0;
     }
 };
